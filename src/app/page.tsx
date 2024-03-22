@@ -386,7 +386,7 @@ export default function Home() {
         } else if (selectedOption === "price: high to low") {
             setFilteredProducts(prevProducts => [...prevProducts].sort((a, b) => b.price - a.price));
         }
-    }, [selectedOption,products]);
+    }, [selectedOption, products]);
 
     return (
         <>
