@@ -38,23 +38,13 @@ const SideNav: React.FC<SideNavProps> = ({categories, onCategoryChange, onUnsele
                 if (category.id === categoryId) {
                     return {...category, isChecked};
                 }
-                return category;
+                return {...category, isChecked: false};
             });
-
-            if (isChecked) {
-                updatedCategories[dropdownIndex].category.forEach(category => {
-                    if (category.id !== categoryId) {
-                        category.isChecked = false;
-                    }
-                });
-            }
-
             return updatedCategories;
         });
 
         onCategoryChange(dropdownIndex, categoryId, isChecked);
     };
-
 
     const handleUnselectAll = (dropdownIndex: number) => {
         setSelectedCategories(prevCategories => {
@@ -71,23 +61,6 @@ const SideNav: React.FC<SideNavProps> = ({categories, onCategoryChange, onUnsele
 
     return (
         <div className="w-[300px] mt-[32px]">
-            <div>
-                <div className="flex flex-row gap-[10px] items-center">
-                    <input
-                        id={`checkbox_checklist`}
-                        type="checkbox"
-                        value=""
-                        name="bordered-checkbox"
-                        className="w-[20px] h-[20px] text-blue-600 bg-gray-100 border-gray-300 rounded"
-                    />
-                    <label
-                        htmlFor={`checkbox_checklist`}
-                        className={`text-[24px] font-bold text-[#252020] capitalize `}
-                    >
-                        CheckList
-                    </label>
-                </div>
-            </div>
             {selectedCategories.map((categoryGroup, index) => (
                 <div key={index}>
                     <div className="flex flex-row justify-between items-start mt-[24px]">
